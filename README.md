@@ -39,6 +39,7 @@ Popups allow all content that appears to be easily changed to match your brand i
 - Clone the repository to use on a hosting server, eg PythonAnywhere.
 - Change your secret code
 - Add your hostname to the allowed hosts
+- Install necessary libraries with pip install -r requirements.txt
 - Run python manage.py migrate
 - Make an account, and set an admin password from within the account settings.
 - Set the url you are hosting from when changing your images, etc.
