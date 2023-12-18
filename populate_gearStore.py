@@ -1,9 +1,5 @@
 import django
-import os
-import random
 from groupProject.wsgi import *
-
-from django.contrib.auth.models import User
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'groupProject.settings')
@@ -12,44 +8,15 @@ django.setup()
 from gearStore.models import Gear, Category, PageContents
 
 
+'''
+Background Image
+Photo by Mike L on Unsplash: 
+https://unsplash.com/photos/brown-mountain-with-trees-lSh6vd87jTs?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash
+'''
 def populate():
-    gear = [
-        {'name': 'Climbing Rope', 'description': 'A strong, dynamic rope used for climbing',
-         'size': 'medium', 'category': 'Rope', 'picture': '/gear_images/rope.jpg'},
-        {'name': 'Climbing Harnesses', 'description': 'A safety harness worn by climbers',
-         'size': 'medium', 'category': 'Harnesses', 'picture': '/gear_images/harness.jpg'},
-        {'name': 'Climbing Helmet', 'description': 'A protective helmet worn by climbers',
-         'size': 'large', 'category': 'Clothing', 'picture': '/gear_images/helmet.jpg'},
-        {'name': 'Climbing Shoes', 'description': 'Specialized shoes used for rock climbing',
-         'size': 'medium', 'category': 'Clothing', 'picture': '/gear_images/shoes.jpg'},
-        {'name': 'Climbing Chalk Bag', 'description': 'A bag used to hold chalk for climbing',
-         'size': 'small', 'category': 'Accessories', 'picture': '/gear_images/chalkbag.jpg'},
-        {'name': 'Crampons', 'description': 'Spiky attachments for climbing shoes', 'size': 'small',
-         'category': 'Accessories', 'picture': '/gear_images/g12.jpg'},
-        {'name': 'Steel Ice Axe', 'description': 'A tool used for ice climbing and mountaineering',
-         'size': 'large', 'category': 'Axes', 'picture': '/gear_images/petzl.jpeg'},
-        {'name': 'Raven Ice Axe', 'description': 'A tool used for ice climbing and mountaineering',
-         'size': 'large', 'category': 'Axes', 'picture': '/gear_images/raven.png'},
-        {'name': 'Mountaineering Boots', 'description': 'Boots designed for use in mountaineering',
-         'size': 'large', 'category': 'Clothing', 'picture': '/gear_images/b2.jpg'},
-        {'name': 'Backpack', 'description': 'A bag for carrying gear',
-         'size': 'medium', 'category': 'Backpacks', 'picture': '/gear_images/default.png'},
-        {'name': 'Rucksack', 'description': ' A rucksack for carrying gear', 'size': 'small',
-         'category': 'Backpacks', 'picture': '/gear_images/tempest30.jpg'},
-        {'name': 'Belay Device', 'description': 'A device used to control a climbing rope',
-         'size': 'small', 'category': 'Accessories', 'picture': '/gear_images/bigair.jpg'},
-        {'name': 'Hiking Boots', 'description': 'Boots designed for use in hiking', 'size': 'medium',
-         'category': 'Clothing', 'picture': '/gear_images/summer.png'}
-    ]
+    gear = []
 
-    categories = [
-        {'name': 'Rope', 'description': 'Ropes for mountaineering', 'picture': '/category_images/ropes.jpg'},
-        {'name': 'Harnesses', 'description': 'Harnesses for mountaineering', 'picture': '/category_images/harness.jpg'},
-        {'name': 'Accessories', 'description': 'Misc accessories for mountaineering', 'picture': '/category_images/chalkbag.jpg'},
-        {'name': 'Backpacks', 'description': 'Backpacks for mountaineering', 'picture': '/category_images/bag.jpg'},
-        {'name': 'Axes', 'description': 'Ice axes for mountaineering', 'picture': '/category_images/axes.jpg'},
-        {'name': 'Clothing', 'description': 'Clothing items for mountaineering', 'picture': '/category_images/helmet.jpg'}
-    ]
+    categories = []
 
     default_data = [
         {'background_image': '/site_images/default_background.jpg',

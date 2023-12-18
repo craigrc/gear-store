@@ -80,7 +80,7 @@ def get_icon():
 
 @register.inclusion_tag('gearStore/display_colour.html')
 def get_colour(booking_id):
-    COLOUR_DICT = {
+    colour_dict = {
         'active': '#b2bda6',
         'requested': '#e8d9b7',
         'accepted': '#b5c9c6',
@@ -92,7 +92,7 @@ def get_colour(booking_id):
     booking = Booking.objects.get(id=booking_id)
     colour = "ffffff"
     if booking:
-        colour = COLOUR_DICT[booking.status.lower()]
+        colour = colour_dict[booking.status.lower()]
     return {"colour": colour}
 
 
@@ -311,12 +311,14 @@ def show_view_filter_bar(order_id, booking_views, section):
 
 
 @register.filter
-def dict_lookup(dict, key):
-    return dict.get(key)
+def dict_lookup(dictionary, key):
+    return dictionary.get(key)
+
 
 @register.filter
-def id_slugify(string):
-    return slugify(string)
+def id_slugify(input_string):
+    return slugify(input_string)
+
 
 @register.filter
 def get_status(gear):
@@ -327,6 +329,7 @@ def get_status(gear):
             return "unavailable"
     else:
         return "out-of-service"
+
 
 @register.inclusion_tag('gearStore/display_order_filter_bar.html')
 def show_order_filter_bar(orders, section):
@@ -357,15 +360,15 @@ def show_starred_gear_comments(gear, user):
 
 
 @register.inclusion_tag('gearStore/display_date.html')
-def get_date(type):
-    date = ""
-    if type == "min":
-        date = datetime.now().date()
-    elif type == "max":
-        date = datetime.now().date() + timedelta(days=365)
-    elif type == "default":
-        date = datetime.now().date() + timedelta(days=14)
-    return {"date": date}
+def get_date(date_type):
+    relevant_date = ""
+    if date_type == "min":
+        relevant_date = datetime.now().date()
+    elif date_type == "max":
+        relevant_date = datetime.now().date() + timedelta(days=365)
+    elif date_type == "default":
+        relevant_date = datetime.now().date() + timedelta(days=14)
+    return {"date": relevant_date}
 
 
 @register.inclusion_tag('gearStore/display_gear_filter_bar.html')
@@ -375,8 +378,9 @@ def show_size_filter_bar(gear):
     return {"options": options,
             "property_type": "size"}
 
+
 @register.inclusion_tag('gearStore/display_gear_filter_bar.html')
-def show_availability_filter_bar(gear):
+def show_availability_filter_bar():
     options = {"all": "All",
                "available": "Available",
                "unavailable": "Unavailable",
@@ -385,6 +389,7 @@ def show_availability_filter_bar(gear):
 
     return {"options": options,
             "property_type": "status"}
+
 
 @register.inclusion_tag('gearStore/display_right_sidebar_links.html')
 def show_right_sidebar_links():
