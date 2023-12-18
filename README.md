@@ -35,12 +35,42 @@ Popups allow all content that appears to be easily changed to match your brand i
 ![image](https://github.com/craigrc/gear-store/assets/44074025/d0a73ae4-e8e0-4797-b848-13295e9e7844)
 
 ## User Guide
-
+- Make a profile on a hosting server, eg PythonAnywhere.
+- Make an app configured as a Django application with Python 3.9.
 - Clone the repository to use on a hosting server, eg PythonAnywhere.
 - Change your secret code
 - Add your hostname to the allowed hosts
+- You may need to correct your wsgi.py as follows:
+```
+"""
+WSGI config for groupProject project.
+
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/2.2/howto/deployment/wsgi/
+"""
+
+import os
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'groupProject.settings')
+
+application = get_wsgi_application()
+```
+- Make a virtual environment with
+```mkvirtualenv gearstore --python=/usr/bin/python3.9```
 - Install necessary libraries with pip install -r requirements.txt
+- Run python manage.py makemigrations
 - Run python manage.py migrate
+- Run python populate_gearStore.py
+- Configure your static files urls to similar to the following (using your own app name);
+![image](https://github.com/craigrc/gear-store/assets/44074025/169bf8b0-4dad-4d1d-b95d-12153ebbacc8)
+- Configure your code sources to similar to the following (using your own app name);
+![image](https://github.com/craigrc/gear-store/assets/44074025/37d1800a-cc76-4375-9870-2d7f6fe4805d)
+- Configure your virtualenv to similar to the following (using your own env name);
+![image](https://github.com/craigrc/gear-store/assets/44074025/1a4d21e0-9193-4df5-ad93-247626ab6e63)
 - Make an account, and set an admin password from within the account settings.
 - Set the url you are hosting from when changing your images, etc.
 
